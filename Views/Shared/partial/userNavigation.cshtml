@@ -1,0 +1,134 @@
+@{
+    // Check if the key exists in ViewData before accessing its value
+    if (ViewData.ContainsKey("UserType") && ViewData["UserType"] != null)
+    {
+        if ((ViewData["UserType"] as string) == "")
+        {
+            <div class="container-fluid d-flex align-items-center p-4" style="background-color: #2C2F3D;">
+                <li class="nav-item dropdown">
+                    <button class="btn text-white fw-bold" onclick="window.location.href='/'">Home</button>
+                </li>
+                <div class="ms-auto">
+                    <ul class="d-flex gap-2">
+                        <li class="nav-item dropdown">
+                            <button class="btn text-white fw-bold" onclick="window.location.href='/Home/Login'">Login</button>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <button class="btn text-white fw-bold" onclick="window.location.href='/Home/Register'">Register</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        }
+        else if ((ViewData["UserType"] as string) == "Citizen")
+        {
+            <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #2C2F3D;">
+                <div class="container-fluid">
+                    <li class="nav-item dropdown">
+                        <button class="btn text-white fw-bold" onclick="window.location.href='/User'">Home</button>
+                    </li>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+                        <ul class="navbar-nav gap-2">
+                            <li class="nav-item dropdown">
+                                <button class="btn text-white" data-bs-toggle="dropdown">Manage Profile</button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Link</a></li>
+                                    <li><a class="dropdown-item" href="/User/IncompleteApplications">Incomplete Applications</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">A third link</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown ">
+                                <button class="btn text-white" data-bs-toggle="dropdown">Apply for
+                                    services</button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/User/ServiceList">View all available services</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown ">
+                                <button class="btn text-white" data-bs-toggle="dropdown">View Status of
+                                    Application</button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/User/ApplicationStatus">Track Application Status</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown ">
+                                <button class="btn text-white" data-bs-toggle="dropdown">Message &
+                                    Alerts</button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Option</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown ">
+                                <a class="btn text-white" asp-controller="Home" asp-action="Logout">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        }
+        else if ((ViewData["UserType"] as string) == "Officer")
+        {
+            <nav class="navbar navbar-expand-sm  navbar-dark" style="background-color: #2C2F3D;">
+                <div class="container-fluid">
+                    <li class="nav-item dropdown">
+                        <button class="btn text-white fw-bold" onclick="window.location.href='/Officer'">Home</button>
+                    </li>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+                        <ul class="navbar-nav gap-2">
+                            <li class="nav-item dropdown">
+                                <button class="btn text-white" data-bs-toggle="dropdown">Manage Profile</button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Link</a></li>
+                                    <li><a class="dropdown-item" href="#">Another link</a></li>
+                                    <li><a class="dropdown-item" href="#">A third link</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <button class="btn text-white" data-bs-toggle="dropdown">Message Box</button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/Officer/Index">Inbox</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <button class="btn text-white" data-bs-toggle="dropdown">DCS Management</button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Option</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <button class="btn text-white" data-bs-toggle="dropdown">Reports</button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Option</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="btn text-white" asp-controller="Home" asp-action="Logout">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        }
+
+    }
+    else
+    {
+        <p>The message is not available or is null.</p>
+    }
+}
+
+
+
+<script>
+    $(".dropdown").hover(function () {
+        $(this).find(".dropdown-menu").toggle();
+        $(this).toggleClass("menu-hover rounded-pill");
+    })
+</script>

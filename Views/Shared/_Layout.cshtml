@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ServicePlus</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ServicePlus.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+        integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("FormStyles", required: false)
+    @RenderSection("IndexStyle", required: false)
+    @RenderSection("CitizenStyles", required: false)
+    @* @RenderSection("DocumentStyles", required: false) *@
+
+</head>
+
+<body>
+
+    <partial name="./partial/header.cshtml" />
+    <div class="container-fluid p-0 h-auto" style="background-color: #2C2F3D;">
+        <main role="main" class="h-auto bg-light">
+            <partial name="./partial/userNavigation.cshtml" />
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer mt-auto p-5 text-muted bg-dark text-white">
+        <div class="container-fluid text-center">
+            Website Content Managed by Department of Social Welfare, UT of Jammu and Kashmir
+        </div>
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

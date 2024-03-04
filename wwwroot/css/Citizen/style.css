@@ -1,0 +1,15 @@
+.modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+table{
+    table-layout: fixed;
+}
+
+
+ul,li{
+    list-style-type: none;
+}

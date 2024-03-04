@@ -1,0 +1,25 @@
+<div class="container-fluid auto-height d-flex align-items-center my-5">
+    <div class="container shadow-lg p-3 bg-dark">
+        <div class="table-responsive">
+            <table class="table table-dark table-striped table-bordered border-info text-center"
+                style="table-layout: fixed;">
+                <thead>
+                    <tr>
+                        <th>S.No.</th>
+                        <th>Applicantion Id</th>
+                        <th>Applicant Name</th>
+                    </tr>
+                </thead>
+                <tbody id="dynamic-list">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    const citizenList = @Html.Raw(Json.Serialize(Model));
+</script>
+
+<script src="~/js/Officer/script.js"></script>

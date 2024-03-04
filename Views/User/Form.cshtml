@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Form";
+}
+
+@section FormStyles {
+    <link rel="stylesheet" href="~/css/form/style.css" />
+}
+
+
+
+
+
+<div class="container-fluid d-flex justify-content-center align-items-center py-5">
+
+    <div class="container border border-dark border-2 rounded-1" style="background-color: #2C2F3D;">
+        <div class="container-fluid p-5  text-white text-center">
+            <h1>UNION TERRITORY OF JAMMU AND KASHMIR</h1>
+            <h2>SOCIAL WELFARE DEPARTMENT</h2>
+            <h5 id="formType">@ViewData["formType"]</h5>
+        </div>
+
+        <form id="serviceForm" method="post" action="/User/Form" enctype="multipart/form-data">
+
+        </form>
+    </div>
+
+
+    <script>
+        const result = @Html.Raw(Json.Serialize(Model));
+    </script>
+
+    <script src="~/js/User/form/generateForms.js"></script>
+
+    <script src="~/js/User/form/objects.js"></script>
+    <script src="~/js/User/form/functions.js"></script>
+    <script src="~/js/User/form/embed.js"></script>

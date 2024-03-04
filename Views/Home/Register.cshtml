@@ -1,0 +1,42 @@
+<form id="registerForm">
+    <div class="container d-flex justify-content-center align-items-center py-5 auto-height">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="login-wrap p-0 d-flex flex-column gap-3 shadow-lg p-5 text-white rounded-1"
+                        style="background-color: #2C2F3D;">
+                        <h3 class="mb-4 text-center">REGISTER</h3>
+                        <div class="form-group border border-light rounded-pill p-2">
+                            <input type="text" class="form-control border-0 bg-transparent text-white" id="username"
+                                name="username" placeholder="Username" required="">
+                        </div>
+                        <div class="form-group border border-light rounded-pill p-2">
+                            <input type="text" class="form-control border-0 bg-transparent text-white" id="email"
+                                name="email" placeholder="Email" required="">
+                        </div>
+                        <div class="form-group d-flex aling-items-center border border-light rounded-pill p-2">
+                            <input id="password" type="password" class="form-control border-0 bg-transparent text-white"
+                                name="password" placeholder="Password" required="">
+                            <i class="bi bi-eye btn text-white" id="togglePassword"></i>
+                        </div>
+                        <div class="form-group d-flex aling-items-center border border-light rounded-pill p-2">
+                            <input id="confirmpassword" type="password"
+                                class="form-control border-0 bg-transparent text-white" placeholder="Confirm Password"
+                                required="">
+                            <i class="bi bi-eye btn text-white" id="toggleConfirmPassword"></i>
+                        </div>
+
+                        <div class="form-group rounded-pill p-2" style="background-color: #EF6603;">
+                            <button type="submit" class="form-control text-white btn px-3 fs-6 fw-bold">Sign
+                                Up</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<script src="~/js/Home/register.js"></script>

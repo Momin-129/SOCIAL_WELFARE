@@ -1,0 +1,24 @@
+/*  */
+
+.heading{
+    font-size: 18px;
+    font-family: 'Arial Black';
+}
+
+.errorMsg{
+    font-size: 10px;
+    color: red;
+    font-weight: bold;
+}
+
+table{
+    table-layout: fixed;
+}
+
+.label-cell{
+    font-weight: bold;
+}
+
+.imgUser{
+    width: 100px;
+}

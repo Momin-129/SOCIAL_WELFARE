@@ -1,0 +1,107 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ServicePlus
+build_property.RootNamespace = ServicePlus
+build_property.ProjectDir = /home/momin/Github/NIC/ServicePlus/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /home/momin/Github/NIC/ServicePlus
+build_property._RazorSourceGeneratorDebug = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/Citizen/CitizenDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2l0aXplbi9DaXRpemVuRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/Home/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Mb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/Home/OTP.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9PVFAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/Home/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9SZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/Home/UnauthorizedAccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9VbmF1dGhvcml6ZWRBY2Nlc3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/Officer/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT2ZmaWNlci9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/Officer/SanctionLetter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT2ZmaWNlci9TYW5jdGlvbkxldHRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/Shared/partial/header.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL3BhcnRpYWwvaGVhZGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/Shared/partial/userNavigation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL3BhcnRpYWwvdXNlck5hdmlnYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/User/ApplicationStatus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9BcHBsaWNhdGlvblN0YXR1cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/User/Documents.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9Eb2N1bWVudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/User/EditForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9FZGl0Rm9ybS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/User/Form.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9Gb3JtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/User/IncompleteApplications.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9JbmNvbXBsZXRlQXBwbGljYXRpb25zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/User/ServiceList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9TZXJ2aWNlTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/momin/Github/NIC/ServicePlus/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-oawzh8703x

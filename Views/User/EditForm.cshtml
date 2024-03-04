@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Edit Form";
+}
+
+@section FormStyles {
+    <link rel="stylesheet" href="~/css/form/style.css" />
+}
+
+
+
+
+
+<div class="container-fluid  d-flex justify-content-center flex-column p-md-5 p-sm-2">
+
+    <div class="container border bg-dark border-dark border-2 rounded-1 p-md-5  mt-5">
+        <div class="container-fluid p-5  text-white text-center">
+            <h1>UNION TERRITORY OF JAMMU AND KASHMIR</h1>
+            <h2>SOCIAL WELFARE DEPARTMENT</h2>
+            <h5 id="formType">@ViewData["formType"]</h5>
+        </div>
+
+        <form id="serviceForm" method="post">
+            <input type="hidden" name="citizenId" id="citizenId" value="">
+            <input type="hidden" name="currentPhase" id="currentPhase" value="@ViewData["phase"]">
+            <input type="hidden" name="presentAddressId" id="presentAddressId" value="">
+            <input type="hidden" name="permanentAddressId" id="permanentAddressId" value="">
+            <input type="hidden" name="bankDetailsId" id="bankDetailsId" value="">
+
+        </form>
+    </div>
+
+
+    <script>
+        const citizenDetails = @Html.Raw(Json.Serialize(Model));
+        var applicationRoot = "@Url.Content("~")";
+    </script>
+    <script src="~/js/User/editForm/helperFunctions.js"></script>
+    <script src="~/js/User/editForm/functions.js"></script>
+    <script src="~/js/User/editForm/script.js"></script>

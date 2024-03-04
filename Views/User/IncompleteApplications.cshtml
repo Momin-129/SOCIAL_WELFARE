@@ -1,0 +1,31 @@
+<div class="container-fluid auto-height d-flex align-items-center my-5">
+    <div class="container shadow-lg p-3 bg-dark">
+        <div class="table-responsive">
+            <table class="table table-dark table-striped table-bordered border-info" style="table-layout: fixed;">
+                <thead>
+                    <tr>
+                        <th>S.No.</th>
+                        <th>Service Name</th>
+                        <th>Date Of Submission</th>
+                    </tr>
+                </thead>
+                <tbody id="applicationStatusModel">
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+<script>
+    const applications = @Html.Raw(Json.Serialize(Model));
+    console.log(applications);
+</script>
+
+<script src="~/js/User/incompleteApplications.js"></script>

@@ -1,0 +1,7 @@
+html,body{
+    height: 100%;
+}
+
+.navbar-nav .nav-item.dropdown .nav-link {
+    color: white;
+}

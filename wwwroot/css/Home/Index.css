@@ -1,0 +1,12 @@
+.card-header{
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    border: 1px solid black;
+}
+
+.card-body{
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid black;
+}

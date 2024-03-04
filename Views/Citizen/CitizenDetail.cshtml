@@ -1,0 +1,109 @@
+@section CitizenStyles {
+    <link rel="stylesheet" href="~/css/Citizen/style.css">
+}
+
+
+<div class="container-fluid p-5">
+
+    <div class="container d-flex justify-content-center mb-3">
+        <h1 class="fw-bold">Applicant Details</h1>
+    </div>
+    <div class="container table-responsive p-5 shadow rounded mt-5 mb-5"
+        style="max-height: 600px; overflow-y: auto; background-color: #2C2F3D;" id="citizenDetails">
+
+    </div>
+
+    <div class="container d-flex justify-content-center p-3">
+        <button class="btn ms-auto me-auto text-white fs-5 fw-bold" style="background-color: #EF6603;"
+            data-bs-toggle="modal" data-bs-target="#myModal">Take Action</button>
+        <button class="btn btn-primary ms-auto me-auto d-none" id="showDoc" data-bs-toggle="modal"
+            data-bs-target="#showDocument"></button>
+    </div>
+</div>
+
+
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content" style="background-color: #2C2F3D; color:white">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">ACTION TO BE TAKEN BY </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <form method="post" id="actionForm">
+                        <table class="table table-responsive text-white">
+                            <tr>
+                                <td>Action:</td>
+                                <td id="actionOptions">
+
+                                </td>
+                            </tr>
+                            <tr id="returnOptions" style="display: none;">
+                                <td>Return Option</td>
+                                <td>
+                                    <div id="tree" style="max-height:200px;overflow-y: auto;">
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Remarks</td>
+                                <td>
+                                    <textarea name="remarks" id="remarks" cols="50" class="w-100" required></textarea>
+                                </td>
+                            </tr>
+
+                        </table>
+                        <div class="container d-flex justify-content-center">
+                            <button class="btn fs-5 fw-bold text-white" style="background-color: #EF6603;"
+                                type="submit">Take
+                                Action</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="showDocument">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container-fluid" id="documentDisplay">
+                    <iframe id="myIframe" style="width: 100%; height: 800px;"></iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    const result = @Html.Raw(Json.Serialize(Model));
+    console.log(result);
+    var applicationRoot = "@Url.Content("~")";
+</script>
+
+<script src="~/js/citizen/helper.js"></script>
+<script src="~/js/citizen/functions.js"></script>
+<script src="~/js/citizen/script.js"></script>

@@ -1,0 +1,74 @@
+<div class="container-fluid auto-height d-flex align-items-center my-5">
+    <div class="container shadow-lg p-3 bg-dark">
+        <div class="table-responsive">
+            <table class="table table-dark table-striped table-bordered border-info" style="table-layout: fixed;">
+                <thead>
+                    <tr>
+                        <th>S.No.</th>
+                        <th>Service Name</th>
+                        <th>Date Of Submission</th>
+                    </tr>
+                </thead>
+                <tbody id="applicationStatusModel">
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<button class="btn btn-primary w-25 d-none" id="statusButton" data-bs-toggle="modal"
+    data-bs-target="#applicationStatus"></button>
+
+
+<div class="modal" id="applicationStatus">
+    <div class="modal-dialog modal-xl modal-dialog-centered ">
+        <div class="modal-content bg-dark text-white">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Application Status</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container-fluid" id="individualModal">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-dark table-striped border-info"
+                            style="table-layout: fixed;">
+                            <thead>
+                                <tr>
+                                    <th>Officer</th>
+                                    <th>Status</th>
+                                    <th>Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody id="individualStatus">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    const applications = @Html.Raw(Json.Serialize(Model));
+    console.log(applications);
+</script>
+
+<script src="~/js/User/applicationStatus.js"></script>
