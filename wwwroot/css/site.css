@@ -48,6 +48,17 @@ body {
   background-color: #EF6603;
 }
 
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+input:focus,
+input:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
 
 
 

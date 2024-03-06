@@ -1,4 +1,9 @@
 $(document).ready(function () {
+  let hasErrors = false;
+  const citizenDocuments = result.citizenDocuments;
+
+  $("#docs").val(citizenDocuments);
+
   $.ajax({
     url: "/User/GetDistricts",
     method: "GET",
@@ -126,13 +131,12 @@ $(document).ready(function () {
   });
 
   // form submission
-  $("#serviceForm").submit(function (e) {
-    e.preventDefault();
-    const formData = new FormData(this);
-    formSubmission.call(this, formData);
+  $("#submit").click(function (e) {
+    const formData = new FormData($("#mainForm")[0]);
+    formSubmission.call(this, formData, hasErrors);
   });
 
-  $("#PresentAddressContainer").on("blur", "input", function () {
+  $("#PresentAddressContainer").on("blur", "input, select", function () {
     if ($("#SameAsPresent").prop("checked")) {
       copyPresentToPermanent();
     }
@@ -178,7 +182,8 @@ $(document).ready(function () {
         id != "MobileNumber" &&
         id != "PresentPincode" &&
         id != "PermanentPincode" &&
-        id != "AccountNumber"
+        id != "AccountNumber" &&
+        $("#" + id).attr("type") != "file"
       ) {
         // Convert the last character to uppercase
         const updatedValue =
@@ -213,6 +218,9 @@ $(document).ready(function () {
     }
   });
 
+  $("#mainForm").submit(function (e) {
+    if (hasErrors) e.preventDefault();
+  });
   // blur error check
   $("input").blur(function () {
     CheckErrors.call(this);

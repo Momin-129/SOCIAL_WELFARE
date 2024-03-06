@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using ServicePlus.Models.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json;
-using Microsoft.VisualBasic;
 
 
 
@@ -82,9 +81,6 @@ namespace ServicePlus.Controllers
             return View(result);
         }
 
-
-
-
         [HttpPost]
         public async Task<IActionResult> Form([FromForm] IFormCollection form)
         {
@@ -105,45 +101,11 @@ namespace ServicePlus.Controllers
             int.TryParse(serviceId, out int ServiceId);
             int.TryParse(userId, out int UserId);
 
-            int citizenDetails = await _helper.InsertCitizenDetails(form, preAddressId, perAddressId, BankDetailsId, ServiceId, UserId);
-
-            TempData["citizenId"] = citizenDetails;
-            return RedirectToAction("Documents");
-        }
-
-        public IActionResult Documents(string? citizenId)
-        {
-            ViewData["UserType"] = "Citizen";
-
-            if (citizenId != null)
-            {
-                ViewData["citizenId"] = citizenId;
-            }
-            else
-                ViewData["citizenId"] = TempData["citizenId"];
+            int citizenId = await _helper.InsertCitizenDetails(form, preAddressId, perAddressId, BankDetailsId, ServiceId, UserId);
 
 
-            if (Request.Cookies.TryGetValue("serviceId", out var serviceId))
-            {
-                ViewData["serviceId"] = serviceId;
-            }
-
-            int.TryParse(serviceId, out int ServiceId);
-
-
-            var ServiceIdParam = new SqlParameter("@ServiceId", ServiceId);
-
-            var documentList = dbContext.ServiceSpecifics.FromSqlRaw("EXEC GetCitizenDocumentsList @ServiceId", ServiceIdParam).ToList()[0];
-            return View(documentList);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Documents([FromForm] IFormCollection form)
-        {
-
+            // Document Insert Logic
             List<Dictionary<string, object>> dataArray = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(form["docs"]!)!;
-
-            int.TryParse(form["citizenId"], out int citizenId);
 
             var objectsList = new List<object>();
             // Process the dataArray here
@@ -173,8 +135,10 @@ namespace ServicePlus.Controllers
 
             dbContext.Documents.FromSqlRaw("EXEC InsertDocuments @CitizenId, @Docs", citizenIdParam, docsParam).ToList();
 
-            return Json(new { success = true, objectsList });
+            return RedirectToAction("Index");
         }
+
+
 
         public IActionResult ApplicationStatus()
         {
@@ -214,19 +178,6 @@ namespace ServicePlus.Controllers
             return View(citizenDetails);
         }
 
-        public void InsertParmeter(ref List<SqlParameter> parameter, string parameterName, string parameterValue, ref string query)
-        {
-            if (int.TryParse(parameterValue, out int intValue))
-            {
-                parameter.Add(new SqlParameter(parameterName, intValue));
-            }
-            else
-            {
-                parameter.Add(new SqlParameter(parameterName, parameterValue));
-            }
-            query += parameterName + "=" + parameterName + ",";
-        }
-
         [HttpPost]
         public async Task<IActionResult> EditForm([FromForm] IFormCollection form)
         {
@@ -249,26 +200,26 @@ namespace ServicePlus.Controllers
                     {
                         var parameterName = "@" + key;
                         var parameterValue = form[key.ToString()].ToString();
-                        InsertParmeter(ref citizenParameters, parameterName, parameterValue, ref CitizenTableQuery);
+                        _helper.InsertParmeter(ref citizenParameters, parameterName, parameterValue, ref CitizenTableQuery);
 
                     }
                     if (key == "PresentAddress" || key == "PresentDistrict" || key == "PresentTehsil" || key == "PresentBlock" || key == "PresentPanchayatMuncipality" || key == "PresentVillage" || key == "PresentWard" || key == "PresentPincode")
                     {
                         var parameterName = "@" + key.Replace("Present", ""); ;
                         var parameterValue = form[key.ToString()].ToString();
-                        InsertParmeter(ref preAddressParameters, parameterName, parameterValue, ref preAddressQuery);
+                        _helper.InsertParmeter(ref preAddressParameters, parameterName, parameterValue, ref preAddressQuery);
                     }
                     if (key == "PermanentAddress" || key == "PermanentDistrict" || key == "PermanentTehsil" || key == "PermanentBlock" || key == "PermanentPanchayatMuncipality" || key == "PermanentVillage" || key == "PermanentWard" || key == "PermanentPincode")
                     {
                         var parameterName = "@" + key.Replace("Permanent", "");
                         var parameterValue = form[key.ToString()].ToString();
-                        InsertParmeter(ref perAddressParameters, parameterName, parameterValue, ref perAddressQuery);
+                        _helper.InsertParmeter(ref perAddressParameters, parameterName, parameterValue, ref perAddressQuery);
                     }
                     if (key == "BankName" || key == "BranchName" || key == "IfscCode" || key == "AccountNumber")
                     {
                         var parameterName = "@" + key;
                         var parameterValue = form[key.ToString()].ToString();
-                        InsertParmeter(ref bankDetailParameters, parameterName, parameterValue, ref bankDetailQuery);
+                        _helper.InsertParmeter(ref bankDetailParameters, parameterName, parameterValue, ref bankDetailQuery);
                     }
 
                 }
@@ -371,7 +322,6 @@ namespace ServicePlus.Controllers
             var result = dbContext.RequestPhases.FromSqlRaw("EXEC GetApplicationDetails @CitizenId", CitizenIdParam).AsNoTracking().ToList();
             return Json(new { success = true, result });
         }
-
 
 
         public IActionResult GetBlocksByDistrict(string districtName)

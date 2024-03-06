@@ -183,9 +183,6 @@ public class HelperFunction
 
         };
 
-
-
-
         _logger.LogInformation("Service Id {0}", serviceId);
 
         var userIdParam = new SqlParameter("@UserId", UserId);
@@ -220,4 +217,18 @@ public class HelperFunction
 
         return result[0].Uuid;
     }
+
+    public void InsertParmeter(ref List<SqlParameter> parameter, string parameterName, string parameterValue, ref string query)
+    {
+        if (int.TryParse(parameterValue, out int intValue))
+        {
+            parameter.Add(new SqlParameter(parameterName, intValue));
+        }
+        else
+        {
+            parameter.Add(new SqlParameter(parameterName, parameterValue));
+        }
+        query += parameterName + "=" + parameterName + ",";
+    }
+
 }

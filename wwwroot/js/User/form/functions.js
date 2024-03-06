@@ -7,6 +7,7 @@ function setErrorSpan(id, msg) {
       .text(msg);
     $("#" + id).after(newSpan);
   }
+  if (msg.length == 0) $("#" + id + "Msg").remove();
 }
 
 function CheckErrors() {
@@ -15,7 +16,7 @@ function CheckErrors() {
     if ($(this).val() == "Please Select") {
       setErrorSpan(id, "This field is required.");
     } else setErrorSpan(id, "");
-  } else if ($(this).val().length == 0 && id != "ApplicantImage") {
+  } else if ($(this).val().length == 0 && $("#" + id).attr("type") != "file") {
     setErrorSpan(id, "This field is required");
   } else if (id == "name" || id == "guardian") {
     if (!/^[A-Za-z .']+$/.test($(this).val())) {
@@ -52,7 +53,8 @@ function CheckErrors() {
     id != "agree" &&
     id != "SameAsPresent" &&
     id != "DateOfMarriage" &&
-    id != "IfscCode"
+    id != "IfscCode" &&
+    $("#" + id).attr("type") != "file"
   ) {
     if (!/^[A-Za-z\s]+$/.test($(this).val())) {
       setErrorSpan(id, "Please enter only charater(s).");
@@ -205,20 +207,141 @@ function empytPermanent() {
   $("#PermanentDistrict").trigger("change"); // to trigger and empty the tehsil select tag
 }
 
-function formSubmission(formData) {
-  console.log($(this).attr("id"));
-  const formObject = {};
+function processKey(key) {
+  var words = key.split(/(?=[A-Z])|(?<=Id)(?=[A-Z])|(?<=[a-z])(?=[A-Z])/);
 
+  for (var i = 0; i < words.length; i++) {
+    if (words[i].toLowerCase() === "pre") {
+      words[i] = "Present";
+    } else if (words[i].toLowerCase() === "per") {
+      words[i] = "Permanent";
+    } else if (words[i].toLowerCase() == "acc") {
+      words[i] = "Account";
+    } else {
+      words[i] =
+        words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
+    }
+
+    if (words[i].toLowerCase() === "id") {
+      words.splice(i, 1);
+      i--;
+    }
+  }
+
+  return words.join(" ");
+}
+
+function isDigit(str) {
+  return /^\d{1,2}$/.test(str);
+}
+
+function openInIframe(url) {
+  $("#myIframe").attr("src", url);
+
+  $("#showDoc").click();
+}
+
+function showFormDetails(formObject) {
+  const citizenDocuments = JSON.parse(result.citizenDocuments);
+
+  var table = $("<table/>");
+  table.addClass("table table-bordered border-light text-white rounded");
+  var tbody = $("<tbody/>");
+  // Create rows in the table
+  for (var key in formObject) {
+    if (formObject.hasOwnProperty(key)) {
+      if (
+        isDigit(formObject[key]) ||
+        key.toLowerCase() === "sameaspresent" ||
+        key.toLowerCase() === "agree" ||
+        key.toLowerCase().includes("enclosure") ||
+        key.toLowerCase().includes("file") ||
+        key.toLowerCase().includes("__requestverificationtoken") ||
+        key.toLowerCase().includes("docs")
+      ) {
+        continue; // Skip the rest of the loop and go to the next iteration
+      }
+      var label = processKey(key);
+      var value = formObject[key];
+      if (
+        key == "DistrictName" ||
+        key == "ApplicantName" ||
+        key == "PresentAddress" ||
+        key == "PermanentAddress" ||
+        key == "BankName"
+      ) {
+        table.append(tbody);
+        $("#formDetails").append(table);
+        var table = $("<table/>");
+        table.addClass("table table-bordered border-light text-white mt-5");
+        var tbody = $("<tbody/>");
+      }
+      var row = $("<tr/>");
+      // Create cells for label and value
+      var labelCell = $("<th/>");
+      var valueCell = $("<td/>");
+      labelCell.addClass("label-cell");
+      // Set content for label and value cells
+      labelCell.text(label);
+      if (key.toLowerCase() === "applicantimage") {
+        const file = JSON.parse(sessionStorage.getItem("files"));
+        var img = $("<img/>");
+        img.addClass("img-fluid");
+        img.addClass("imgUser");
+        img.attr({ src: file[0][key] });
+        valueCell.append(img);
+      } else {
+        valueCell.text(value);
+      }
+      row.append(labelCell);
+      row.append(valueCell);
+      tbody.append(row);
+    }
+  }
+  table.append(tbody);
+  $("#formDetails").append(table);
+
+  var table = $("<table/>");
+  table.addClass("table table-bordered border-light text-white rounded");
+  var tbody = $("<tbody/>");
+  citizenDocuments.map((elements) => {
+    const files = JSON.parse(sessionStorage.getItem("files"));
+
+    const enclosure =
+      formObject["enclosure" + elements.label.split(" ").join("")];
+    const key = "file" + elements.label.split(" ").join("");
+    tbody.append(`
+            <tr>
+                <th>${elements.label}</th>
+                <td>
+                    <a href="#" onclick="openInIframe('${files[0][key]}'); return false;">
+                ${enclosure}
+            </a>
+                </td>
+            </tr>
+        `);
+  });
+
+  table.append(tbody);
+  $("#formDetails").append(table);
+}
+
+function formSubmission(formData, hasErrors) {
+  const formObject = {};
   formData.forEach(function (value, key) {
     if (value instanceof File && value.size === 0) {
       formObject[key] = "";
     } else if (value instanceof File && value.size != 0) {
       var reader = new FileReader();
       reader.onload = function (e) {
-        localStorage.setItem(key + "Data", e.target.result);
+        let arr = JSON.parse(sessionStorage.getItem("files")) ?? [{}];
+        let obj = arr[0];
+        obj[key] = e.target.result;
+        arr[0] = obj;
+        sessionStorage.setItem("files", JSON.stringify(arr));
       };
       reader.readAsDataURL(value);
-      formObject[key] = key + "Data";
+      formObject[key] = key;
     } else {
       formObject[key] = value;
       if (
@@ -233,8 +356,6 @@ function formSubmission(formData) {
     }
   });
 
-  let hasErrors = false;
-  console.log(formObject);
   for (let key in formObject) {
     if (formObject[key] == "" || formObject[key] == "Please Select") {
       setErrorSpan(key, "This field is required");
@@ -243,7 +364,13 @@ function formSubmission(formData) {
   }
 
   if (!hasErrors) {
-    localStorage.setItem("formObject", JSON.stringify(formObject));
-    this.submit();
+    setTimeout(() => {
+      $("#serviceForm").hide();
+      $("#docForm").hide();
+      $("#submit").hide();
+      $("#formDetails").show();
+      $("#finalSubmit").show();
+      showFormDetails(formObject);
+    }, 500);
   }
 }
